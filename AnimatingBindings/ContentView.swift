@@ -8,9 +8,25 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var animationAmount: CGFloat = 1
+
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        print(animationAmount)
+
+        return VStack {
+            Stepper("Scale amount", value: $animationAmount.animation(), in: 1...10)
+
+            Spacer()
+
+            Button("Tap Me") {
+                self.animationAmount += 1
+            }
+            .padding(40)
+            .background(Color.red)
+            .foregroundColor(.white)
+            .clipShape(Circle())
+            .scaleEffect(animationAmount)
+        }
     }
 }
 
